@@ -24,7 +24,9 @@ import DoctorSettings from "./components/doctorComponents/DoctorSettings"
 import ManagePatients from "./components/doctorComponents/ManagePatients";
 import PatientDetails from "./components/doctorComponents/PatientDetails";
 import AccessControl from "./components/PatientComponents/AccessControl";
-import MedicalDashboard from "./components/HospitalFacilityComponents/MainDashboard"
+import MedicalDashboard from "./components/HospitalFacilityComponents/MainDashboard";
+import MedicalRecordsPage from "./pages/MedicalRecordsPage";
+
 function App() {
   return (
     <>
@@ -58,6 +60,7 @@ function App() {
             <Route path="notification" element={<Notification />} />
             <Route path="user-settings" element={<PatientSetting />} />
             <Route path="access-control" element={<AccessControl />} />
+            <Route path="medical-records" element={<MedicalRecordsPage />} />
           </Route>
           {/* doctor routes  */}
           <Route
