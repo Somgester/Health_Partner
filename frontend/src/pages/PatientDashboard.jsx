@@ -29,16 +29,11 @@ const {user , setUser} = React.useContext(UserDataContext);
   return (
     <div className="flex min-h-screen bg-gray-100">
       <Sidebar role="patient" />
-      <div className="flex-1 ">
-      <div className="flex-1 bg-gray-100 ">
-     
-      <Outlet /> {/* Render the selected component here */}
-
-    </div>
-       
+      <div className="flex-1 ml-64 overflow-auto">
+        <div className="bg-gray-100">
+          <Outlet /> {/* Render the selected component here */}
+        </div>
       </div>
-    
-      
     </div>
   )
 }
