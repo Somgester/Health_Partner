@@ -18,7 +18,6 @@ import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import WeightChart from "./WeightChart";
 import ConditionChart from "./ConditionChart";
-import MedicalRecordsList from "./MedicalRecordsList";
 import { UserDataContext } from "../../context/UserContext";
 import BMIChart from "./BMIChart";
 import axios from "axios";
@@ -301,7 +300,6 @@ const MyHealth = () => {
           </div>
         </div>
       )}
-      <MedicalRecordsList />
     </div>
   );
 };
