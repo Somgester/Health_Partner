@@ -16,7 +16,8 @@ import {
   Hospital,
   FolderPlus,
   MessageCircle,
-  Shield
+  Shield,
+  FileText
   
 } from 'lucide-react';
 
@@ -37,6 +38,7 @@ function Sidebar({ role }) {
       { icon: Calendar, label: 'Track Menstruation',link:'/patient-dashboard/menstruation'  },
       { icon: Hospital, label: 'Search Hospital', link:'/patient-dashboard/findhospital' },
       { icon: FolderPlus, label: ' Add Medical Record', link:'/patient-dashboard/addmedicalrecord' },
+      { icon: FileText, label: 'View Medical Records', link:'/patient-dashboard/medical-records' },
       { icon: MessageCircle, label: ' Notification', link:'/patient-dashboard/notification' },
     ],
     facility: [
@@ -71,7 +73,7 @@ function Sidebar({ role }) {
   }
 
   return (
-    <div className="h-screen w-64 bg-white border-r border-gray-200 flex flex-col">
+    <div className="fixed left-0 top-0 h-screen w-64 bg-white border-r border-gray-200 flex flex-col overflow-y-auto z-50">
       <div className="p-6 flex items-center space-x-3">
         <HeartPulse className="h-8 w-8 text-blue-400" />
         <h2 className="text-2xl font-bold text-blue-600">Health Partner</h2>
