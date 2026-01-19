@@ -39,16 +39,11 @@ const MedicalRecordsList = () => {
         }
 
         //get specific
-
         // Fetch medical records for the authenticated user
         const response = await axios.get(`${CMH_ROUTES.GET_MEDICAL_RECORD_BY_ID}/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
-            // id: id,
           },
-          // params: {
-          //   id: id,
-          // },
         });
 
         setRecords(response.data);
@@ -86,7 +81,7 @@ const MedicalRecordsList = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="text-center">
+        <div className="text-center bg-white p-8 rounded-lg shadow-sm">
           <Loader className="w-12 h-12 animate-spin text-blue-600 mx-auto" />
           <p className="mt-4 text-gray-700">Loading medical records...</p>
         </div>
@@ -94,39 +89,20 @@ const MedicalRecordsList = () => {
     );
   }
 
-  // Error state
-  // if (error) {
-  //   return (
-  //     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-  //       <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full text-center">
-  //         <div className="text-red-500 text-5xl mb-4">⚠️</div>
-  //         <h2 className="text-2xl font-bold text-gray-800 mb-4">Error</h2>
-  //         <p className="text-gray-600 mb-6">{error}</p>
-  //         <button
-  //           onClick={() => window.location.reload()}
-  //           className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-  //         >
-  //           Try Again
-  //         </button>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   if (selectedRecord) {
     return (
-      <div className=" mt-5 rounded-2xl shadow-2xl border-gray-200 min-h-screen  bg-gradient-to-br from-indigo-200 to-purple-100 py-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gray-100 p-6">
+        <div className="w-full">
           <button
             onClick={handleBack}
-            className="flex items-center text-gray-600 hover:text-gray-900 mb-6"
+            className="flex items-center text-gray-700 hover:text-gray-900 mb-6 bg-white px-4 py-2.5 rounded-lg shadow-sm border border-gray-200 transition-all"
           >
             <ArrowLeft className="w-5 h-5 mr-2" />
             Back to Records
           </button>
 
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="p-8">
+          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div className="p-6 sm:p-8">
               <div className="flex justify-between items-start mb-6">
                 <h2 className="text-2xl font-semibold text-gray-900">
                   {selectedRecord.condition}
@@ -276,17 +252,19 @@ const MedicalRecordsList = () => {
   }
 
   return (
-    <div className=" mt-5 rounded-2xl shadow-2xl border-gray-200 min-h-screen bg-gray-300 py-8">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-5 flex items-center justify-center gap-4 p-6 bg-white border border-gray-200 shadow-md rounded-lg">
-          <Stethoscope className="w-10 h-10 text-blue-800" />
-          <h1 className="text-3xl font-bold text-gray-900">Medical Records</h1>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="w-full">
+        <div className="mb-6 flex items-center gap-4 p-6 bg-white shadow-sm rounded-lg">
+          <div className="bg-blue-100 p-3 rounded-lg">
+            <Stethoscope className="w-8 h-8 text-blue-600" />
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Medical Records</h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {records.map((record, index) => (
             <div
               key={record._id || index}
-              className="bg-gray-100 rounded-xl shadow-2xl border border-gray-300 overflow-hidden cursor-pointer transform transition-transform hover:scale-105"
+              className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden cursor-pointer transition-all hover:shadow-md hover:border-gray-300"
               onClick={() => handleCardClick(record)}
             >
               <div className="p-6">
@@ -315,18 +293,18 @@ const MedicalRecordsList = () => {
 
                   {record.symptoms.length > 0 && (
                     <div className="flex items-start text-gray-600">
-                      <Activity className="w-5 h-5 mr-2 mt-1" />
+                      <Activity className="w-5 h-5 mr-2 mt-1 flex-shrink-0" />
                       <div className="flex flex-wrap gap-2">
                         {record.symptoms.slice(0, 2).map((symptom, idx) => (
                           <span
                             key={idx}
-                            className="bg-gray-100 px-2 py-1 rounded-md text-sm"
+                            className="bg-blue-50 text-blue-700 px-2 py-1 rounded-md text-sm"
                           >
                             {symptom}
                           </span>
                         ))}
                         {record.symptoms.length > 2 && (
-                          <span className="bg-gray-100 px-2 py-1 rounded-md text-sm">
+                          <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">
                             +{record.symptoms.length - 2} more
                           </span>
                         )}
@@ -349,7 +327,7 @@ const MedicalRecordsList = () => {
                   )}
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-gray-300">
+                <div className="mt-6 pt-4 border-t border-gray-200">
                   <div className="flex items-center text-sm text-gray-500">
                     <Clock className="w-4 h-4 mr-1" />
                     <span>
@@ -364,12 +342,12 @@ const MedicalRecordsList = () => {
         </div>
 
         {records.length === 0 && (
-          <div className="text-center py-12">
+          <div className="bg-white rounded-lg shadow-sm p-12 text-center">
             <div className="text-7xl mb-4">📋</div>
-            <h3 className="text-xl font-medium text-gray-700 mb-2">
-              No records yet
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              No Medical Records Yet
             </h3>
-            <p className="text-gray-500">
+            <p className="text-gray-600">
               You haven't added any medical records yet.
             </p>
           </div>
