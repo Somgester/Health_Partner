@@ -53,7 +53,7 @@ const MyHealth = () => {
       const fetchDoctors = async () => {
         try {
           const response = await axios.get(
-            `${import.meta.env.VITE_BASE_URL}doctor/all-doctors`
+            `${import.meta.env.VITE_BASE_URL}/doctor/all-doctors`
           );
           if (response.data && Array.isArray(response.data.doctors)) {
             setDoctors(response.data.doctors);
